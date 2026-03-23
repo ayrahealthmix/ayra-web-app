@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const BASE_URL = "http://localhost:5000";
-const API_BASE_URL = "/api";
+const API_BASE_URL = "http://localhost:5000/api";
 
 /* =======================
    ADMIN
@@ -34,6 +34,25 @@ export const createProductApi = (formData) => {
     },
   });
 };
+
+// Update product
+export const updateProductApi = (id, formData) => {
+  return axios.put(`${API_BASE_URL}/admin/products/${id}`, formData, {
+    headers: {
+      "x-admin": localStorage.getItem("adminPassword"),
+    },
+  });
+};
+
+// Delete product
+export const deleteProductApi = (id) => {
+  return axios.delete(`${API_BASE_URL}/admin/products/${id}`, {
+    headers: {
+      "x-admin": localStorage.getItem("adminPassword"),
+    },
+  });
+};
+
 export const getProductsApi = (params = {}) => {
   return axios.get(`${API_BASE_URL}/products`, { params });
 };

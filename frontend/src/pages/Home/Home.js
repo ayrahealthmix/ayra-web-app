@@ -5,7 +5,9 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import jsonData from "../../services/data.json";
-import SwiperImage1 from "../../assets/images/swiper-1.webp";
+import SwiperImage1 from "../../assets/banners/masala-banner.png";
+import SwiperImage2 from "../../assets/banners/malt-banner.png";
+import SwiperImage3 from "../../assets/banners/mixes-banner.png";
 import categoryImage1 from "../../assets/images/category-1.webp";
 
 export default function Home() {
@@ -16,7 +18,6 @@ export default function Home() {
       <div className="swiper-cntnr">
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
-          spaceBetween={20}
           slidesPerView={1}
           navigation
           pagination={{ clickable: true }}
@@ -27,10 +28,10 @@ export default function Home() {
             <img src={SwiperImage1} alt="slide1" />
           </SwiperSlide>
           <SwiperSlide>
-            <img src={SwiperImage1} alt="slide2" />
+            <img src={SwiperImage2} alt="slide2" />
           </SwiperSlide>
           <SwiperSlide>
-            <img src={SwiperImage1} alt="slide3" />
+            <img src={SwiperImage3} alt="slide3" />
           </SwiperSlide>
         </Swiper>
       </div>

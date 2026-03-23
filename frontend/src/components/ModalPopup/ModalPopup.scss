@@ -2,6 +2,11 @@
 
 .modal-popup {
   &__main {
+    @include mobile {
+      width: 100%;
+      left: 0 !important;
+      top: 0 !important;
+    }
   }
 
   &__head {
@@ -15,6 +20,10 @@
       top: 50%;
       right: 1rem;
       transform: translateY(-50%);
+
+      > svg {
+        color: $color-primary;
+      }
     }
   }
 }

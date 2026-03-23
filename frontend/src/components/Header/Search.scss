@@ -1,0 +1,210 @@
+@import "../../styles/index";
+
+.search-desktop {
+  position: relative;
+
+  .search-form {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    input {
+      width: 250px;
+      padding: 0.75rem 1rem;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      outline: none;
+      transition: border-color 0.2s;
+
+      &:focus {
+        border-color: $color-primary;
+      }
+    }
+
+    svg {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 20px;
+      color: $color-primary;
+      pointer-events: none;
+    }
+  }
+
+  // Search Results Dropdown
+  .search-results-dropdown {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    min-width: 250px;
+    max-width: 300px;
+    max-height: 500px;
+    overflow-y: auto;
+    z-index: 1000;
+    margin-top: 0.5rem;
+
+    .search-loading,
+    .search-error,
+    .search-no-results {
+      padding: 1.5rem;
+      text-align: center;
+      color: #666;
+    }
+
+    .search-error {
+      color: #d32f2f;
+    }
+
+    .search-results-list {
+      .search-result-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        text-decoration: none;
+        color: #333;
+        border-bottom: 1px solid #f0f0f0;
+        transition: background 0.2s;
+
+        &:hover {
+          background: #f9f9f9;
+        }
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        img {
+          width: 60px;
+          height: 60px;
+          object-fit: cover;
+          border-radius: 4px;
+        }
+
+        .search-result-name {
+          font-weight: 500;
+          margin-bottom: 0.25rem;
+        }
+
+        .search-result-price {
+          color: $color-primary;
+          font-weight: 600;
+        }
+      }
+
+      .search-result-view-all {
+        display: block;
+        padding: 1rem;
+        text-align: center;
+        text-decoration: none;
+        color: $color-primary;
+        font-weight: 600;
+        border-top: 1px solid #ddd;
+        background: #f9f9f9;
+
+        &:hover {
+          background: #f0f0f0;
+        }
+      }
+    }
+  }
+}
+
+.search-mobile {
+  padding: 1rem;
+  height: calc(100vh - 55px);
+
+  .search-form {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+
+    input {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+      font-size: 16px;
+
+      &:focus {
+        border-color: $color-primary;
+      }
+    }
+
+    button {
+      background: $color-primary;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      svg {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+
+  .search-loading,
+  .search-error,
+  .search-no-results {
+    padding: 2rem;
+    text-align: center;
+    color: #666;
+  }
+
+  .search-error {
+    color: #d32f2f;
+  }
+
+  .search-results-list {
+    .search-result-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      text-decoration: none;
+      color: #333;
+      border-bottom: 1px solid #f0f0f0;
+
+      img {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: 4px;
+      }
+
+      .search-result-name {
+        font-weight: 500;
+        margin-bottom: 0.25rem;
+      }
+
+      .search-result-price {
+        color: $color-primary;
+        font-weight: 600;
+      }
+    }
+
+    .search-result-view-all {
+      display: block;
+      padding: 1rem;
+      text-align: center;
+      text-decoration: none;
+      color: $color-primary;
+      font-weight: 600;
+      border-top: 1px solid #ddd;
+      background: #f9f9f9;
+    }
+  }
+}

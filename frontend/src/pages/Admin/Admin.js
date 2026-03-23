@@ -7,7 +7,7 @@ import Login from "../../components/Login/Login";
 import ModalPopup from "../../components/ModalPopup/ModalPopup";
 import { useNavigate } from "react-router-dom";
 import AlertPopup from "../../components/AlertPopup/AlertPopup";
-import { getProductsApi } from "../../services/api";
+import { deleteProductApi, getProductsApi } from "../../services/api";
 import ProductCard from "../../components/ProductCard/ProductCard";
 const Admin = () => {
   const [products, setProducts] = useState([]);
@@ -34,6 +34,8 @@ const Admin = () => {
       .catch((err) => console.error(err));
   }, []);
 
+  const [editingProduct, setEditingProduct] = useState(null);
+
   const toggleExpansion = (value) => {
     if (isFormExpanded.includes(value)) {
       setIsFormExpanded((prev) => prev.filter((v) => v !== value));
@@ -47,12 +49,42 @@ const Admin = () => {
     navigate("/");
   };
 
+  const handleEditProduct = (id) => {
+    const productToEdit = products.find((p) => p.productId === id);
+    if (productToEdit) {
+      setEditingProduct(productToEdit);
+      if (!isFormExpanded.includes("add")) {
+        setIsFormExpanded((prev) => [...prev, "add"]);
+      }
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
+  const handleDeleteProduct = (id) => {
+    deleteProductApi(id)
+      .then((res) => {
+        setProducts((prev) => prev.filter((p) => p.productId !== id));
+        setIsAlertOpen({
+          open: true,
+          title: "Success",
+          message: "Product deleted successfully",
+        });
+      })
+      .catch((err) => {
+        setIsAlertOpen({
+          open: true,
+          title: "Error",
+          message: "Failed to delete product",
+        });
+      });
+  };
+
   return (
     <div className="admin">
       <h1>Admin Dashboard</h1>
       <div className="admin-cntnr">
         <div className="admin-header" onClick={() => toggleExpansion("add")}>
-          <h2>Add New Product</h2>
+          <h2>{editingProduct ? "Edit Product" : "Add New Product"}</h2>
           {isFormExpanded.includes("add") ? (
             <ExpandLessIcon />
           ) : (
@@ -60,7 +92,12 @@ const Admin = () => {
           )}
         </div>
         {isFormExpanded.includes("add") && (
-          <ProductForm setIsAlertOpen={setIsAlertOpen} />
+          <ProductForm
+            setIsAlertOpen={setIsAlertOpen}
+            editingProduct={editingProduct}
+            setEditingProduct={setEditingProduct}
+            setProducts={setProducts} // Pass setProducts to update list after edit
+          />
         )}
       </div>
       <div className="admin-cntnr">
@@ -75,7 +112,12 @@ const Admin = () => {
         {isFormExpanded.includes("all") && (
           <div className="prod-cntnr">
             {products.map((product) => (
-              <ProductCard product={product} />
+              <ProductCard
+                product={product}
+                page="admin"
+                handleDeleteProduct={handleDeleteProduct}
+                handleEditProduct={handleEditProduct}
+              />
             ))}
           </div>
         )}

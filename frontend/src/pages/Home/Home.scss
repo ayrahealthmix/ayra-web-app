@@ -5,13 +5,28 @@
 
   .swiper-cntnr {
     width: 100%;
-    max-width: 1366px;
+    max-width: 1024px;
     margin: 0 auto;
     padding: 2rem;
+    @include mobile {
+      padding: 1rem;
+    }
 
     .swiper {
+      .swiper-wrapper {
+        .swiper-slide {
+          > img {
+            max-width: 100%;
+          }
+        }
+      }
+
       .swiper-button-prev,
       .swiper-button-next {
+        @include mobile {
+          display: none;
+        }
+
         svg {
           background-color: $color-accent;
           color: #fff;
@@ -32,6 +47,12 @@
 
       .swiper-button-next {
         right: 2rem;
+      }
+
+      .swiper-pagination {
+        .swiper-pagination-bullet-active {
+          background-color: $color-primary;
+        }
       }
     }
   }

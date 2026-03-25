@@ -17,6 +17,7 @@ export default function ProductForm(props) {
   const [form, setForm] = useState(initialState);
   const [thumbnail, setThumbnail] = useState(null);
   const [images, setImages] = useState([]);
+  // eslint-disable-next-line no-unused-vars
   const [existingImages, setExistingImages] = useState([]); // Store existing images for display
 
   // ✅ VARIANTS STATE
@@ -43,6 +44,7 @@ export default function ProductForm(props) {
     } else {
       resetForm();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [editingProduct]);
 
   const resetForm = () => {

@@ -27,7 +27,7 @@ export default function Header() {
     return (
       <nav className="nav">
         <Link to="/">Home</Link>
-        <Link to="/list">Shop</Link>
+        <Link to="/list/all">Shop</Link>
         {/* <div
           className="dropdown"
           onMouseEnter={() => !isMobile && setOpenMenuItem(true)}

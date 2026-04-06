@@ -8,10 +8,18 @@ import jsonData from "../../services/data.json";
 import SwiperImage1 from "../../assets/banners/masala-banner.png";
 import SwiperImage2 from "../../assets/banners/malt-banner.png";
 import SwiperImage3 from "../../assets/banners/mixes-banner.png";
-import categoryImage1 from "../../assets/images/category-1.webp";
+import CategoryMasalaImg from "../../assets/images/cat-masala.png";
+import CategoryHealthMixImg from "../../assets/images/cat-mix.png";
+import CategoryFlourImg from "../../assets/images/cat-malt.png";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   const { categoryHighlights } = jsonData;
+  const categoryImages = {
+    masala: CategoryMasalaImg,
+    "health-mix": CategoryHealthMixImg,
+    flour: CategoryFlourImg,
+  };
 
   return (
     <section className="home">
@@ -43,11 +51,15 @@ export default function Home() {
         </p>
         <div className="category-highlts-main__row">
           {categoryHighlights.map((category) => (
-            <div className="category-highlts-main__row__col" key={category.id}>
-              <img src={categoryImage1} alt="category" />
+            <Link
+              className="category-highlts-main__row__col"
+              key={category.id}
+              to={`/list/${category.slug}`}
+            >
+              <img src={categoryImages[category.slug]} alt="category" />
               <h4>{category.title}</h4>
               <p>{category.description}</p>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

@@ -16,7 +16,7 @@ function App() {
         {/* USER SIDE */}
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
-          <Route path="/list" element={<List />} />
+          <Route path="/list/:slug" element={<List />} />
           <Route path="/details/:id" element={<Details />} />
           <Route path="/contact" element={<Contact />} />
         </Route>

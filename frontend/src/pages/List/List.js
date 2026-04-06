@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
-// import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import "./List.scss";
 import { getProductsApi } from "../../services/api";
 
 export default function List() {
+  const { slug } = useParams();
   const [products, setProducts] = useState([]);
-  const [category, setCategory] = useState("");
-  const [search] = useState("");
-  const [price, setPrice] = useState(500);
-  // const [filtered, setFiltered] = useState([]);
+  const [category, setCategory] = useState(slug || "all");
 
   useEffect(() => {
     getProductsApi({
@@ -22,56 +20,60 @@ export default function List() {
 
   return (
     <div className="list-page">
-      {/* Filters */}
-      <aside className="filters">
-        <h3>Filters</h3>
+      {category && <h2>{category} products</h2>}
+      <div className="list-page-cntnr">
+        {/* Filters */}
+        <aside className="filter">
+          <h3>Filters</h3>
 
-        <input
-          type="text"
-          placeholder="Search"
-          // value={search}
-          // onChange={(e) => setSearch(e.target.value)}
-        />
-
-        <select value={category} onChange={(e) => setCategory(e.target.value)}>
-          <option value="">All Categories</option>
-          <option value="masala">Masala</option>
-          <option value="mix">Mix</option>
-          <option value="malt">Malt</option>
-        </select>
-
-        <label>
-          Max Price: ₹{price}
-          <input
-            type="range"
-            min="50"
-            max="500"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-          />
-        </label>
-      </aside>
-
-      {/* Product Grid */}
-      <section className="products">
-        {search && (
-          <div className="search-info">
-            Showing results for: <strong>"{search}"</strong>
+          <div
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            className="filter__category-cntnr"
+          >
+            <button
+              onClick={() => setCategory("all")}
+              className={category === "all" ? "active" : ""}
+            >
+              All
+            </button>
+            <button
+              onClick={() => setCategory("masala")}
+              className={category === "masala" ? "active" : ""}
+            >
+              Masala
+            </button>
+            <button
+              onClick={() => setCategory("mix")}
+              className={category === "mix" ? "active" : ""}
+            >
+              Mix
+            </button>
+            <button
+              onClick={() => setCategory("malt")}
+              className={category === "malt" ? "active" : ""}
+            >
+              Malt
+            </button>
           </div>
-        )}
-        {category && (
-          <div className="category-info">
-            Category: <strong>{category}</strong>
-          </div>
-        )}
-        {products.length ? (
-          products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))
-        ) : (
-          <p>No products found</p>
-        )}
-      </section>
+        </aside>
+
+        {/* Product Grid */}
+        <section className="products">
+          {products.length ? (
+            products
+              .filter((product) => {
+                if (category === "all") return true;
+                return product.category === category;
+              })
+              .map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))
+          ) : (
+            <p>No products found</p>
+          )}
+        </section>
+      </div>
     </div>
   );
 }

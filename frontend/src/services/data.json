@@ -3,17 +3,20 @@
     {
       "id": 1,
       "title": "Masala",
-      "description": "Authentic spice Blends, rich aroma!"
+      "description": "Authentic spice Blends, rich aroma!",
+      "slug": "masala"
     },
     {
       "id": 2,
       "title": "Health mix",
-      "description": "Nutritious & energyzing every zip!"
+      "description": "Nutritious & energyzing every zip!",
+      "slug": "health-mix"
     },
     {
       "id": 3,
       "title": "Flour",
-      "description": "The Heart of Homemade Goodness!"
+      "description": "The Heart of Homemade Goodness!",
+      "slug": "flour"
     }
   ],
   "offers": [

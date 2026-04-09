@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./Details.scss";
 import { getProductById } from "../../services/api";
-import { BASE_URL } from "../../services/api";
+import { BASE_URL } from "../../helpers/config";
 
 export default function ProductDetail() {
   const { id } = useParams();

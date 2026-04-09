@@ -61,14 +61,27 @@
     background-color: $color-background;
     width: 100%;
     padding: 2rem;
+    @include mobile {
+      padding: 1rem;
+    }
 
     > h1 {
+      font-weight: 600;
+      line-height: 1.5;
       text-align: center;
+      margin-bottom: 0.5rem;
+      @include mobile {
+        font-size: 1.5rem;
+      }
     }
 
     > p {
       text-align: center;
       margin-bottom: 2rem;
+      @include mobile {
+        font-size: 0.875rem;
+        margin-bottom: 1rem;
+      }
     }
 
     &__row {
@@ -77,21 +90,41 @@
       gap: 4rem;
       justify-content: center;
       flex-wrap: wrap;
+      @include mobile {
+        gap: 1rem;
+      }
 
       &__col {
         width: 300px;
         text-align: center;
         text-decoration: none;
+        @include mobile {
+          width: calc(33.3% - 0.75rem);
+        }
 
         img {
           max-width: 100%;
           height: auto;
           margin-bottom: 1rem;
           border-radius: 50%;
+          @include mobile {
+            margin-bottom: 0.5rem;
+          }
         }
 
         h4 {
           margin-bottom: 0.5rem;
+          @include mobile {
+            font-size: 14px;
+            margin-bottom: 0.25rem;
+          }
+        }
+        P {
+          color: #444;
+          font-size: 0.875rem;
+          @include mobile {
+            font-size: 0.75rem;
+          }
         }
       }
     }

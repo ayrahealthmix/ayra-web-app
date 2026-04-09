@@ -11,7 +11,10 @@ export default function ProductCard({ product }) {
       <div className="card-details">
         <h4>{product.name}</h4>
         <p>
-          Starting at <span>₹ {product.variants[0].discountPrice}</span>
+          Starting at{" "}
+          <span>
+            ₹ {product.variants[0]?.discountPrice || product?.variants[0].price}
+          </span>
         </p>
         <Link to={`/details/${product.productId}`}>
           <button>Details</button>

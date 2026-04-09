@@ -11,9 +11,12 @@ import SwiperImage3 from "../../assets/banners/mixes-banner.png";
 import CategoryMasalaImg from "../../assets/images/cat-masala.png";
 import CategoryHealthMixImg from "../../assets/images/cat-mix.png";
 import CategoryFlourImg from "../../assets/images/cat-malt.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useIsMobile } from "../../hooks/useIsMobile";
 
 export default function Home() {
+  const isMobile = useIsMobile();
+  const navigate = useNavigate();
   const { categoryHighlights } = jsonData;
   const categoryImages = {
     masala: CategoryMasalaImg,
@@ -31,6 +34,7 @@ export default function Home() {
           pagination={{ clickable: true }}
           autoplay={{ delay: 3000 }}
           loop
+          onClick={() => navigate("/list/all")}
         >
           <SwiperSlide>
             <img src={SwiperImage1} alt="slide1" />
@@ -58,12 +62,12 @@ export default function Home() {
             >
               <img src={categoryImages[category.slug]} alt="category" />
               <h4>{category.title}</h4>
-              <p>{category.description}</p>
+              {!isMobile && <p>{category.description}</p>}
             </Link>
           ))}
         </div>
       </div>
-      <div className="videos-highlights-main">
+      {/* <div className="videos-highlights-main">
         <h1>From The Hands Of Ayra</h1>
         <div className="videos-highlights-main__row">
           {categoryHighlights.map((category) => (
@@ -82,7 +86,7 @@ export default function Home() {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
     </section>
   );
 }

@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import AlertPopup from "../../components/AlertPopup/AlertPopup";
 import { deleteProductApi, getProductsApi } from "../../services/api";
 import ProductCard from "../../components/ProductCard/ProductCard";
+import { useIsMobile } from "../../hooks/useIsMobile";
 const Admin = () => {
   const [products, setProducts] = useState([]);
   const [isFormExpanded, setIsFormExpanded] = React.useState(["add", "all"]);
@@ -19,8 +20,14 @@ const Admin = () => {
     message: "",
   });
   const navigate = useNavigate();
+  const isMobile = useIsMobile();
 
   useEffect(() => {
+    if (isMobile) {
+      navigate("/");
+      return;
+    }
+
     const adminPassword = localStorage.getItem("adminPassword");
     if (!adminPassword) {
       setIsLoginOpen(true);

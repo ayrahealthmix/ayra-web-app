@@ -1,7 +1,9 @@
 import "./Footer.scss";
 import { Link } from "react-router-dom";
+import { useIsMobile } from "../../hooks/useIsMobile";
 
 export default function Footer() {
+  const isMobile = useIsMobile();
   return (
     <footer className="footer">
       <div className="footer-container">
@@ -24,9 +26,11 @@ export default function Footer() {
             <li>
               <Link to="/contact">Contact</Link>
             </li>
-            <li>
-              <Link to="/admin">Admin</Link>
-            </li>
+            {!isMobile && (
+              <li>
+                <Link to="/admin">Admin</Link>
+              </li>
+            )}
           </ul>
         </div>
         <div className="footer-section">

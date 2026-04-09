@@ -7,6 +7,10 @@ import { BASE_URL } from "../../helpers/config";
 export default function ProductDetail() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
+  const productName = "Masala Powder";
+  const message = encodeURIComponent(
+    `Hello, I want to buy ${productName}. Please share price and details.`,
+  );
 
   useEffect(() => {
     getProductById(id).then((res) => setProduct(res.data.data));
@@ -24,8 +28,21 @@ export default function ProductDetail() {
       {/* Info */}
       <div className="detail-info">
         <h1>{product.name}</h1>
-        {/* <p className="price">₹{product.variants[0].discountPrice}</p> */}
         <p className="desc">{product.description}</p>
+        <table className="variants">
+          <thead>
+            <th>Weight</th>
+            <th>Price</th>
+          </thead>
+          <tbody>
+            {product.variants.map((variant) => (
+              <tr key={variant.id}>
+                <td>{variant.netWeight}</td>
+                <td>₹{variant.price}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
 
         <div className="actions">
           <button className="add">Email</button>

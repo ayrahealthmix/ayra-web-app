@@ -24,9 +24,30 @@
 .filter {
   background: #fff;
   border: 1px solid #eee;
-  padding: 20px;
+  padding: 1.5rem;
   border-radius: 12px;
   height: fit-content;
+  @include mobile {
+    padding: 1rem;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+
+    h3 {
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: $color-heading;
+    }
+
+    span {
+      display: flex;
+      align-items: center;
+    }
+  }
 
   &__category-cntnr {
     display: flex;
@@ -56,9 +77,11 @@
 
 /* Products */
 .products {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  justify-content: left;
+  gap: 1.5rem;
 }
 
 /* Mobile */

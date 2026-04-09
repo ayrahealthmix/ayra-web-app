@@ -17,20 +17,36 @@
 }
 /* Info */
 .detail-info h1 {
-  font-size: 32px;
+  font-size: 24px;
   margin-bottom: 10px;
-}
-
-.price {
-  font-size: 22px;
-  color: #d32f2f;
-  margin-bottom: 14px;
 }
 
 .desc {
   font-size: 15px;
   color: #555;
   line-height: 1.6;
+}
+
+table,
+th,
+td {
+  border: 1px solid #eee;
+  border-collapse: collapse;
+}
+.variants {
+  width: 200px;
+  margin-top: 1rem;
+
+  thead {
+    th {
+      padding: 8px 12px;
+    }
+  }
+  tbody {
+    td {
+      padding: 8px 12px;
+    }
+  }
 }
 
 /* Buttons */

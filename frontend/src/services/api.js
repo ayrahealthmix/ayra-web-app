@@ -51,8 +51,8 @@ export const deleteProductApi = (id) => {
   });
 };
 
-export const getProductsApi = (params = {}) => {
-  return axios.get(`${API_URL}/products`, { params });
+export const getProductsApi = () => {
+  return axios.get(`${API_URL}/products`);
 };
 
 // Get product by ID

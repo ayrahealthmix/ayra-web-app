@@ -5,21 +5,7 @@ const { GridFSBucket } = require("mongodb");
 //PUBLIC
 exports.getProducts = async (req, res) => {
   try {
-    const { category, isAvailable } = req.query;
-
-    const query = {};
-
-    // ----- CATEGORY FILTER -----
-    if (category) {
-      query.category = category;
-    }
-
-    // ----- AVAILABILITY FILTER -----
-    if (isAvailable !== undefined) {
-      query.isAvailable = isAvailable === "true";
-    }
-
-    const products = await Product.find(query).sort({ createdAt: -1 });
+    const products = await Product.find().sort({ createdAt: -1 });
 
     res.status(200).json({
       status: "ok",

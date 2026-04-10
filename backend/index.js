@@ -15,15 +15,18 @@ app.use("/api", require("./src/routes/admin.routes"));
 const PORT = process.env.PORT || 5000;
 
 const startServer = async () => {
+  console.log("Starting server...");
+  console.log("PORT:", process.env.PORT);
+
   try {
     await connectDB();
     console.log("DB connected");
   } catch (error) {
-    console.error("DB connection failed:", error.message);
+    console.error("DB FAILED:", error.message);
   }
 
   app.listen(PORT, "0.0.0.0", () => {
-    console.log(`Server is running on port ${PORT}`);
+    console.log(`Server running on port ${PORT}`);
   });
 };
 

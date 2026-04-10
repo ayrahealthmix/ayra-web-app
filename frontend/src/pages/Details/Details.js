@@ -7,10 +7,10 @@ import { BASE_URL } from "../../helpers/config";
 export default function ProductDetail() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
-  const productName = "Masala Powder";
-  const message = encodeURIComponent(
-    `Hello, I want to buy ${productName}. Please share price and details.`,
-  );
+  // const productName = "Masala Powder";
+  // const message = encodeURIComponent(
+  //   `Hello, I want to buy ${productName}. Please share price and details.`,
+  // );
 
   useEffect(() => {
     getProductById(id).then((res) => setProduct(res.data.data));

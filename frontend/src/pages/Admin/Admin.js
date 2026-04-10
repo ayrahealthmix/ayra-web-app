@@ -33,12 +33,10 @@ const Admin = () => {
       setIsLoginOpen(true);
     }
 
-    getProductsApi({
-      category: "",
-      minPrice: null,
-    })
+    getProductsApi()
       .then((res) => setProducts(res.data.data))
       .catch((err) => console.error(err));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const [editingProduct, setEditingProduct] = useState(null);

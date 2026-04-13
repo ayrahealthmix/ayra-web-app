@@ -5,6 +5,11 @@ const { GridFSBucket } = require("mongodb");
 // PUBLIC
 exports.getProducts = async (req, res) => {
   try {
+    if (mongoose.connection.readyState !== 1) {
+      return res.status(500).json({
+        message: "Database not connected",
+      });
+    }
     const products = await Product.find();
 
     res.status(200).json({

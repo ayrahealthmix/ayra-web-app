@@ -1,11 +1,11 @@
-const Product = require("../models/product.model");
+const Product = require("../models/productSchema");
 const mongoose = require("mongoose");
 const { GridFSBucket } = require("mongodb");
 
-//PUBLIC
+// PUBLIC
 exports.getProducts = async (req, res) => {
   try {
-    const products = await Product.find().sort({ createdAt: -1 });
+    const products = await Product.find();
 
     res.status(200).json({
       status: "ok",
@@ -75,6 +75,29 @@ exports.getSearchProducts = async (req, res) => {
 };
 
 // ADMIN
+exports.adminLogin = (req, res) => {
+  const { password } = req.body;
+
+  if (!password) {
+    return res.json({
+      status: "error",
+      message: "Password is required",
+    });
+  }
+
+  if (password !== process.env.ADMIN_KEY) {
+    return res.json({
+      status: "error",
+      message: "Invalid admin password",
+    });
+  }
+
+  res.status(200).json({
+    status: "ok",
+    message: "Admin login successful",
+  });
+};
+
 exports.createProduct = async (req, res) => {
   try {
     const { name, description, variants, category, isAvailable } = req.body;

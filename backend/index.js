@@ -5,8 +5,20 @@ const connectDB = require("./src/config/db");
 
 const app = express();
 
-app.use(cors());
+const corsOptions = {
+  origin: ["https://www.ayrahealthmix.com", "http://localhost:3000"],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
+
 app.use(express.json());
+
+app.get("/", (req, res) => {
+  res.send("API is running");
+});
 
 app.use("/uploads", express.static("uploads"));
 app.use("/api", require("./src/routes/product.routes"));

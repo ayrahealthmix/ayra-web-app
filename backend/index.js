@@ -27,6 +27,7 @@ const PORT = process.env.PORT || 5000;
 const startServer = async () => {
   console.log("STEP 1: Starting server...");
   console.log("PORT:", process.env.PORT);
+  console.log("MONGO_URL:", process.env.MONGO_URL);
 
   // 🔥 START SERVER FIRST
   app.listen(PORT, "0.0.0.0", () => {

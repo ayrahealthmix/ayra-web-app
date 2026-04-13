@@ -25,19 +25,21 @@ app.use("/api", require("./src/routes/routes"));
 const PORT = process.env.PORT || 5000;
 
 const startServer = async () => {
-  console.log("Starting server...");
+  console.log("STEP 1: Starting server...");
   console.log("PORT:", process.env.PORT);
 
+  // 🔥 START SERVER FIRST
+  app.listen(PORT, "0.0.0.0", () => {
+    console.log(`STEP 2: Server running on port ${PORT}`);
+  });
+
   try {
+    console.log("STEP 3: Connecting DB...");
     await connectDB();
-    console.log("DB connected");
+    console.log("STEP 4: DB connected");
   } catch (error) {
     console.error("DB FAILED:", error.message);
   }
-
-  app.listen(PORT, "0.0.0.0", () => {
-    console.log(`Server running on port ${PORT}`);
-  });
 };
 
 startServer();

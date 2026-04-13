@@ -20,8 +20,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/uploads", express.static("uploads"));
-app.use("/api", require("./src/routes/product.routes"));
-app.use("/api", require("./src/routes/admin.routes"));
+app.use("/api", require("./src/routes/routes"));
 
 const PORT = process.env.PORT || 5000;
 

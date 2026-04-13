@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./Details.scss";
 import { getProductById } from "../../services/api";
-import { BASE_URL } from "../../helpers/config";
+import { IMAGE_URL } from "../../helpers/config";
 
 export default function ProductDetail() {
   const { id } = useParams();
@@ -22,7 +22,7 @@ export default function ProductDetail() {
     <section className="detail">
       {/* Image */}
       <div className="detail-image">
-        <img src={`${BASE_URL}${product.thumbnail}`} alt={product.name} />
+        <img src={`${IMAGE_URL}${product.thumbnail}`} alt={product.name} />
       </div>
 
       {/* Info */}

@@ -1,9 +1,9 @@
 // Development environment
-// export const BASE_URL = "http://localhost:5000";
+// export const IMAGE_URL = "http://localhost:5000";
 // export const API_URL = "http://localhost:5000/api";
 
 // Production environment
-export const BASE_URL = "https://www.ayrahealthmix.com";
+export const IMAGE_URL = "https://api.ayrahealthmix.com";
 export const API_URL = "https://api.ayrahealthmix.com/api";
 export const EMAIL_ADDRESS = "ayrahealthmix@gmail.com";
 export const PHONE_NUMBER = "+919360988964";

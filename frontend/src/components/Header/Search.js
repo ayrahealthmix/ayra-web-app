@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
 import { searchProductApi } from "../../services/api";
-import { BASE_URL } from "../../helpers/config";
+import { IMAGE_URL } from "../../helpers/config";
 import "./Search.scss";
 
 const Search = ({ isMobile = false, onClose = () => {} }) => {
@@ -107,7 +107,7 @@ const Search = ({ isMobile = false, onClose = () => {} }) => {
                 onClick={handleResultClick}
               >
                 <img
-                  src={`${BASE_URL}${product.thumbnail}`}
+                  src={`${IMAGE_URL}${product.thumbnail}`}
                   alt={product.name}
                 />
                 <div>

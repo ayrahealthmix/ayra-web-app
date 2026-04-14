@@ -5,11 +5,18 @@
   flex-direction: column;
   gap: 16px;
 
-  > h2 {
-    color: $color-heading;
+  > h1 {
+    color: $text-heading;
+    font-size: $hero-text;
+    font-weight: $weight-heading;
+    line-height: $line-height-tight;
     text-transform: capitalize;
     text-align: center;
     margin-block: 1.5rem;
+
+    > span {
+      color: $primary;
+    }
   }
 
   .list-page-cntnr {
@@ -37,7 +44,7 @@
     align-items: center;
     cursor: pointer;
 
-    h3 {
+    strong {
       font-size: 1.25rem;
       font-weight: 400;
       color: $color-heading;

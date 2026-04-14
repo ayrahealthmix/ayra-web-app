@@ -26,25 +26,21 @@ export default function Header() {
   const MenuItemUi = () => {
     return (
       <nav className="nav">
-        <Link to="/">Home</Link>
-        <Link to="/list/all">Shop</Link>
-        {/* <div
-          className="dropdown"
-          onMouseEnter={() => !isMobile && setOpenMenuItem(true)}
-          onMouseLeave={() => !isMobile && setOpenMenuItem(false)}
-          onClick={() => isMobile && setOpenMenuItem(!openMenuItem)}
+        <Link to="/" className={location.pathname === "/" ? "active" : ""}>
+          Home
+        </Link>
+        <Link
+          to="/list/all"
+          className={location.pathname === "/list/all" ? "active" : ""}
         >
-          <button className="dropdown-btn">Shop{isMobile ? null : "▾"}</button>
-          {openMenuItem && (
-            <div className="dropdown-menu">
-              <Link to="/list">All Products</Link>
-              <Link to="/list/masala">Masala</Link>
-              <Link to="/list/snacks">Snacks</Link>
-              <Link to="/list/pickles">Pickles</Link>
-            </div>
-          )}
-        </div> */}
-        <Link to="/contact">Contact</Link>
+          Shop
+        </Link>
+        <Link
+          to="/contact"
+          className={location.pathname === "/contact" ? "active" : ""}
+        >
+          Contact
+        </Link>
       </nav>
     );
   };

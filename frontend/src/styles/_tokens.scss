@@ -1,7 +1,7 @@
 // === Design Tokens ===
 
 // Font Families
-$font-heading: "Inter", sans-serif;
+$font-heading: "Dancing Script", cursive;
 $font-body: "Poppins", sans-serif;
 
 // Soft Pink Color Palette
@@ -13,3 +13,44 @@ $color-background: #ffe5ec;
 // Text Colors
 $color-heading: #222222;
 $color-text: #333333;
+
+// === New Tokens ===
+$primary: #fb6f92;
+$primary-hover: #f95c83;
+$primary-light: #ffe4ec;
+$primary-soft: #fff1f5;
+
+$bg: #f9fafb;
+$surface: #ffffff;
+
+$border: #e5e7eb;
+$border-dark: #d1d5db;
+
+$radius-sm: 12px;
+$radius-md: 24px;
+$radius-lg: 48px;
+
+$success: #22c55e;
+$warning: #f59e0b;
+$error: #ef4444;
+
+$shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 6px rgba(0, 0, 0, 0.08);
+$shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+
+$text-heading: #111827;
+$text-body: #374151;
+$text-muted: #6b7280;
+
+$hero-text: 3rem;
+$heading-text: 2rem;
+$body-text: 1rem;
+$small-text: 0.875rem;
+$caption-text: 0.75rem;
+
+$line-height-tight: 1.25;
+$line-height-normal: 1.5;
+
+$weight-heading: 600;
+$weight-bold: 500;
+$weight-body: 400;

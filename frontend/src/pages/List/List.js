@@ -12,25 +12,32 @@ export default function List() {
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState(slug || "all");
   const [openFilter, setOpenFilter] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const isMobile = useIsMobile();
 
   useEffect(() => {
+    setIsLoading(true);
     getProductsApi()
       .then((res) => setProducts(res.data.data))
-      .catch((err) => console.error(err));
+      .catch((err) => console.error(err))
+      .finally(() => setIsLoading(false));
   }, [category]);
 
   return (
     <div className="list-page">
-      {category && <h2>{category} products</h2>}
+      {category && (
+        <h1>
+          <span>{category}</span> products
+        </h1>
+      )}
       <div className="list-page-cntnr">
         {/* Filters */}
-        <aside className="filter">
+        <aside className="filter" data-aos="zoom-in-right">
           <div
             className="filter__header"
             onClick={() => setOpenFilter(!openFilter)}
           >
-            <h3>Filters</h3>
+            <strong>Filters</strong>
             {isMobile && (
               <span>
                 {openFilter ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
@@ -74,7 +81,9 @@ export default function List() {
 
         {/* Product Grid */}
         <section className="products">
-          {products.length ? (
+          {isLoading ? (
+            <p>Loading...</p>
+          ) : products.length ? (
             products
               .filter((product) => {
                 if (category === "all") return true;

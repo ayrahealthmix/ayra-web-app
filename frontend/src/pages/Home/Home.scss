@@ -5,7 +5,7 @@
 
   .swiper-cntnr {
     width: 100%;
-    max-width: 1024px;
+    max-width: 1366px;
     margin: 0 auto;
     padding: 2rem;
     @include mobile {
@@ -28,15 +28,16 @@
         }
 
         svg {
-          background-color: $color-accent;
-          color: #fff;
+          background-color: $primary-light;
+          color: $primary;
           border-radius: 50%;
           padding: 0.75rem;
         }
 
         &:hover {
           svg {
-            background-color: $color-secondary;
+            color: $surface;
+            background-color: $primary-hover;
           }
         }
       }
@@ -51,14 +52,14 @@
 
       .swiper-pagination {
         .swiper-pagination-bullet-active {
-          background-color: $color-primary;
+          background-color: $primary;
         }
       }
     }
   }
 
   .category-highlts-main {
-    background-color: $color-background;
+    background-color: $primary-soft;
     width: 100%;
     padding: 2rem;
     @include mobile {
@@ -66,26 +67,33 @@
     }
 
     > h1 {
-      font-weight: 600;
-      line-height: 1.5;
+      font-size: $hero-text;
+      font-weight: $weight-heading;
+      line-height: $line-height-tight;
+      color: $primary;
       text-align: center;
       margin-bottom: 0.5rem;
       @include mobile {
-        font-size: 1.5rem;
+        font-size: $heading-text;
       }
     }
 
     > p {
+      font-size: $body-text;
+      color: $text-body;
+      line-height: $line-height-normal;
+      font-weight: $weight-body;
       text-align: center;
       margin-bottom: 2rem;
       @include mobile {
-        font-size: 0.875rem;
+        font-size: $small-text;
         margin-bottom: 1rem;
       }
     }
 
     &__row {
       width: 100%;
+      max-width: 1366px;
       display: flex;
       gap: 4rem;
       justify-content: center;
@@ -113,53 +121,65 @@
         }
 
         h4 {
+          font-size: $heading-text;
+          font-weight: $weight-bold;
+          color: $text-heading;
+          line-height: $line-height-tight;
           margin-bottom: 0.5rem;
           @include mobile {
-            font-size: 14px;
             margin-bottom: 0.25rem;
+            font-size: $body-text;
           }
         }
         P {
-          color: #444;
-          font-size: 0.875rem;
-          @include mobile {
-            font-size: 0.75rem;
-          }
+          color: $text-muted;
+          font-size: $small-text;
         }
       }
     }
   }
 
-  .videos-highlights-main {
+  .about-us-main {
     width: 100%;
+    max-width: 1024px;
+    margin: 0 auto;
     padding: 2rem;
-
-    > h1 {
-      text-align: center;
-      margin-bottom: 2rem;
+    @include mobile {
+      padding: 1rem;
     }
 
-    &__row {
-      width: 100%;
-      display: flex;
-      gap: 4rem;
-      justify-content: center;
-      flex-wrap: wrap;
-
-      &__col {
-        width: 300px;
+    &__cntnr {
+      > h1 {
+        font-size: $hero-text;
+        font-weight: $weight-heading;
+        line-height: $line-height-tight;
+        color: $primary;
         text-align: center;
-        border-radius: 0.25rem;
-        overflow: hidden;
-        position: relative;
+        margin-bottom: 0.5rem;
+        @include mobile {
+          font-size: $heading-text;
+        }
+      }
 
-        &__content {
-          position: absolute;
-          bottom: 0;
-          background: rgba(0, 0, 0, 0.5);
-          color: #fff;
-          width: 100%;
-          padding: 1rem;
+      > p {
+        font-size: $body-text;
+        color: $text-body;
+        line-height: $line-height-normal;
+        font-weight: $weight-body;
+        text-align: left;
+        margin-bottom: 2rem;
+        @include mobile {
+          font-size: $small-text;
+          margin-bottom: 1rem;
+        }
+
+        &::first-letter {
+          font-size: 2rem;
+          font-weight: $weight-bold;
+          color: $primary;
+          float: left;
+          line-height: 1;
+          margin-right: 0.25rem;
         }
       }
     }

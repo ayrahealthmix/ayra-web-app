@@ -4,7 +4,7 @@ import { IMAGE_URL } from "../../helpers/config";
 
 export default function ProductCard({ product }) {
   return (
-    <div className="card" key={product.productId}>
+    <div className="card" key={product.productId} data-aos="zoom-in-down">
       <div className="card-thumbnail">
         <img src={`${IMAGE_URL}${product.thumbnail}`} alt={product.name} />
       </div>

@@ -11,13 +11,19 @@
     input {
       width: 250px;
       padding: 0.75rem 1rem;
-      border-radius: 20px;
-      border: 1px solid #ccc;
+      border-radius: $radius-lg;
+      border: 1px solid $border;
       outline: none;
       transition: border-color 0.2s;
+      font-size: $small-text;
+      color: $color-text;
 
-      &:focus {
-        border-color: $color-primary;
+      @include desktop {
+        &:focus {
+          background-color: $primary-soft;
+          border-color: $primary;
+          box-shadow: $shadow-md;
+        }
       }
     }
 
@@ -28,7 +34,7 @@
       transform: translateY(-50%);
       width: 20px;
       height: 20px;
-      color: $color-primary;
+      color: $primary;
       pointer-events: none;
     }
   }
@@ -38,10 +44,10 @@
     position: absolute;
     top: calc(100% + 0.5rem);
     right: 0;
-    background: white;
-    border: 1px solid #ddd;
+    background: $surface;
+    border: 1px solid $border;
     border-radius: 8px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    box-shadow: $shadow-md;
     min-width: 250px;
     max-width: 300px;
     max-height: 500px;
@@ -54,26 +60,28 @@
     .search-no-results {
       padding: 1.5rem;
       text-align: center;
-      color: #666;
+      color: $text-muted;
     }
 
     .search-error {
-      color: #d32f2f;
+      color: $error;
     }
 
     .search-results-list {
       .search-result-item {
         display: flex;
         align-items: center;
-        gap: 1rem;
-        padding: 1rem;
+        gap: 0.5rem;
+        padding: 0.5rem;
         text-decoration: none;
-        color: #333;
-        border-bottom: 1px solid #f0f0f0;
+        color: $color-text;
+        border-bottom: 1px solid $border;
         transition: background 0.2s;
-
-        &:hover {
-          background: #f9f9f9;
+        @include desktop {
+          &:hover {
+            background: $primary-soft;
+            cursor: pointer;
+          }
         }
 
         &:last-child {
@@ -88,13 +96,11 @@
         }
 
         .search-result-name {
-          font-weight: 500;
+          font-size: $small-text;
+          line-height: $line-height-normal;
+          font-weight: $weight-body;
+          color: $text-body;
           margin-bottom: 0.25rem;
-        }
-
-        .search-result-price {
-          color: $color-primary;
-          font-weight: 600;
         }
       }
 
@@ -103,13 +109,13 @@
         padding: 1rem;
         text-align: center;
         text-decoration: none;
-        color: $color-primary;
+        color: $primary;
         font-weight: 600;
-        border-top: 1px solid #ddd;
-        background: #f9f9f9;
+        border-top: 1px solid $border;
+        background: $surface;
 
         &:hover {
-          background: #f0f0f0;
+          background: $primary-soft;
         }
       }
     }
@@ -127,31 +133,18 @@
 
     input {
       flex: 1;
-      padding: 0.75rem 1rem;
-      border: 1px solid #ccc;
-      border-radius: 8px;
+      padding: 1rem;
+      border-radius: $radius-lg;
+      border: 1px solid $border;
       outline: none;
-      font-size: 16px;
+      transition: border-color 0.2s;
+      font-size: $small-text;
+      color: $color-text;
 
       &:focus {
-        border-color: $color-primary;
-      }
-    }
-
-    button {
-      background: $color-primary;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      padding: 0.75rem 1rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      svg {
-        width: 24px;
-        height: 24px;
+        background-color: $primary-soft;
+        border-color: $primary;
+        box-shadow: $shadow-md;
       }
     }
   }
@@ -161,11 +154,11 @@
   .search-no-results {
     padding: 2rem;
     text-align: center;
-    color: #666;
+    color: $text-muted;
   }
 
   .search-error {
-    color: #d32f2f;
+    color: $error;
   }
 
   .search-results-list {
@@ -175,14 +168,14 @@
       gap: 1rem;
       padding: 1rem;
       text-decoration: none;
-      color: #333;
-      border-bottom: 1px solid #f0f0f0;
+      color: $color-text;
+      border-bottom: 1px solid $border;
 
       img {
         width: 60px;
         height: 60px;
         object-fit: cover;
-        border-radius: 4px;
+        border-radius: $radius-sm;
       }
 
       .search-result-name {
@@ -191,7 +184,7 @@
       }
 
       .search-result-price {
-        color: $color-primary;
+        color: $primary;
         font-weight: 600;
       }
     }
@@ -201,10 +194,10 @@
       padding: 1rem;
       text-align: center;
       text-decoration: none;
-      color: $color-primary;
+      color: $primary;
       font-weight: 600;
-      border-top: 1px solid #ddd;
-      background: #f9f9f9;
+      border-top: 1px solid $border;
+      background: $surface;
     }
   }
 }

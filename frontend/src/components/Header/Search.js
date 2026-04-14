@@ -110,12 +110,7 @@ const Search = ({ isMobile = false, onClose = () => {} }) => {
                   src={`${IMAGE_URL}${product.thumbnail}`}
                   alt={product.name}
                 />
-                <div>
-                  <div className="search-result-name">{product.name}</div>
-                  <div className="search-result-price">
-                    ₹{product.variants[0].discountPrice}
-                  </div>
-                </div>
+                <div className="search-result-name">{product.name}</div>
               </Link>
             ))}
             {searchResults.length > 5 && (
@@ -142,7 +137,7 @@ const Search = ({ isMobile = false, onClose = () => {} }) => {
   if (isMobile) {
     return (
       <div className="search-mobile">
-        <form onSubmit={handleSearchSubmit} className="search-form">
+        <div className="search-form">
           <input
             type="text"
             placeholder="Search products..."
@@ -150,10 +145,7 @@ const Search = ({ isMobile = false, onClose = () => {} }) => {
             onChange={handleSearchChange}
             autoFocus
           />
-          <button type="submit">
-            <SearchIcon />
-          </button>
-        </form>
+        </div>
         {renderSearchResults()}
       </div>
     );

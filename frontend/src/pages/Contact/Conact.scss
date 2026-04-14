@@ -1,9 +1,16 @@
+@import "../../styles/index";
+
 .contact-page {
   max-width: 800px;
   margin: auto;
   padding: 24px;
 
   h1 {
+    text-align: center;
+    font-size: $hero-text;
+    font-weight: $weight-heading;
+    line-height: $line-height-tight;
+    color: $primary;
     margin-bottom: 20px;
   }
 
@@ -11,11 +18,18 @@
     margin-bottom: 30px;
 
     h3 {
+      font-size: $heading-text;
+      font-weight: $weight-heading;
+      line-height: $line-height-tight;
+      color: $primary;
       margin-bottom: 10px;
     }
 
     a {
-      color: #000;
+      font-size: $body-text;
+      color: $text-body;
+      line-height: $line-height-normal;
+      font-weight: $weight-body;
       text-decoration: underline;
     }
   }

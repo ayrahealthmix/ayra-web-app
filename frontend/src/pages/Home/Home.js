@@ -26,7 +26,7 @@ export default function Home() {
 
   return (
     <section className="home">
-      <div className="swiper-cntnr">
+      <div className="swiper-cntnr" data-aos="zoom-in">
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
           slidesPerView={1}
@@ -47,7 +47,7 @@ export default function Home() {
           </SwiperSlide>
         </Swiper>
       </div>
-      <div className="category-highlts-main">
+      <div className="category-highlts-main" data-aos="fade-down">
         <h1>Category highlights</h1>
         <p>
           Enhance your taste with our authentic collection—tradition meets
@@ -67,26 +67,29 @@ export default function Home() {
           ))}
         </div>
       </div>
-      {/* <div className="videos-highlights-main">
-        <h1>From The Hands Of Ayra</h1>
-        <div className="videos-highlights-main__row">
-          {categoryHighlights.map((category) => (
-            <div className="videos-highlights-main__row__col" key={category.id}>
-              <video width="100%" autoPlay muted loop>
-                <source
-                  src="/assets/videos/HOW_FLOUR_IS_MADE.mp4"
-                  type="video/mp4"
-                />
-                Your browser does not support the video tag.
-              </video>
-              <div className="videos-highlights-main__row__col__content">
-                <strong>Flours</strong>
-                <p>Rs. 299.00</p>
-              </div>
-            </div>
-          ))}
+      <div className="about-us-main" data-aos="fade-up">
+        <div className="about-us-main__cntnr">
+          <h1>About Us</h1>
+          <p>
+            We are a food masala company committed to delivering authentic taste
+            with uncompromised quality. Every blend is carefully crafted using
+            selected spices to ensure rich flavor, freshness, and consistency in
+            every meal.
+          </p>
+
+          <p>
+            Our journey is built on a simple belief — kindness and trust create
+            lasting relationships. From sourcing ingredients to reaching your
+            kitchen, we focus on honesty, hygiene, and care at every step.
+          </p>
+
+          <p>
+            We aim to bring families together through delicious food, making
+            every dish memorable and full of warmth. With our masalas, you don’t
+            just cook — you share love, tradition, and trust.
+          </p>
         </div>
-      </div> */}
+      </div>
     </section>
   );
 }

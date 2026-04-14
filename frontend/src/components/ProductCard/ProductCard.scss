@@ -49,11 +49,11 @@
 
     button {
       width: 100%;
-      background: $color-primary;
-      color: #fff;
+      background: $primary;
+      color: $surface;
       border: none;
       padding: 12px 16px;
-      border-radius: 8px;
+      border-radius: $radius-lg;
       cursor: pointer;
       font-size: 16px;
       font-weight: 500;

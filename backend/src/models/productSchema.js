@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const productSchema = new mongoose.Schema(
   {
@@ -23,7 +23,6 @@ const productSchema = new mongoose.Schema(
           required: true,
           min: 0,
         },
-
         discountPrice: {
           type: Number,
           validate: {
@@ -33,7 +32,6 @@ const productSchema = new mongoose.Schema(
             message: "Discount price must be less than price",
           },
         },
-
         netWeight: {
           type: String,
           required: true,
@@ -60,6 +58,7 @@ const productSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
+// Auto-generate productId
 productSchema.pre("save", async function () {
   if (!this.isNew) return;
 
@@ -74,4 +73,6 @@ productSchema.pre("save", async function () {
   this.productId = String(nextNumber);
 });
 
-module.exports = mongoose.model("Product", productSchema);
+const Product = mongoose.model("Product", productSchema);
+
+export default Product;

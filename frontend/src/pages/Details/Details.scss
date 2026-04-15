@@ -1,82 +1,132 @@
-.detail {
-  display: grid;
-  grid-template-columns: 30% 1fr;
-  gap: 40px;
-  padding: 40px 8%;
-}
+@import "../../styles/index";
 
-/* Image */
-.detail-image {
+.product-detail-main {
   width: 100%;
-
-  img {
-    width: 100%;
-    border-radius: 16px;
-    object-fit: cover;
-  }
-}
-/* Info */
-.detail-info h1 {
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-.desc {
-  font-size: 15px;
-  color: #555;
-  line-height: 1.6;
-}
-
-table,
-th,
-td {
-  border: 1px solid #eee;
-  border-collapse: collapse;
-}
-.variants {
-  width: 200px;
-  margin-top: 1rem;
-
-  thead {
-    th {
-      padding: 8px 12px;
-    }
-  }
-  tbody {
-    td {
-      padding: 8px 12px;
-    }
-  }
-}
-
-/* Buttons */
-.actions {
-  margin-top: 24px;
+  max-width: 1366px;
+  margin: 0 auto;
   display: flex;
-  gap: 16px;
-}
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 40px 8%;
+  @include mobile {
+    padding: 1rem;
+    gap: 1rem;
+  }
 
-.add,
-.buy {
-  padding: 12px 22px;
-  border-radius: 30px;
-  border: none;
-  cursor: pointer;
-  font-size: 15px;
-}
+  &__lhs {
+    width: calc(30% - 1rem);
+    @include mobile {
+      width: 100%;
+    }
 
-.add {
-  background: #eee;
-}
+    img {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 16px;
+      object-fit: cover;
+    }
+  }
 
-.buy {
-  background: #d32f2f;
-  color: #fff;
-}
+  &__rhs {
+    width: calc(70% - 1rem);
+    @include mobile {
+      width: 100%;
+    }
 
-/* Mobile */
-@media (max-width: 768px) {
-  .detail {
-    grid-template-columns: 1fr;
+    .name {
+      font-size: $heading-text;
+      color: $text-heading;
+      line-height: $line-height-tight;
+      font-weight: $weight-heading;
+      margin-bottom: 10px;
+      @include mobile {
+        font-size: 1.5rem;
+      }
+    }
+
+    .desc {
+      font-size: $body-text;
+      font-weight: $weight-body;
+      line-height: $line-height-normal;
+      color: $text-body;
+
+      &::first-letter {
+        margin-left: 1rem;
+      }
+    }
+
+    .variants {
+      width: 200px;
+      margin-top: 1rem;
+      border: 1px solid $primary-light;
+      border-collapse: collapse;
+      @include mobile {
+        width: 100%;
+      }
+
+      thead {
+        th {
+          padding: 8px 12px;
+          border: 1px solid $primary-light;
+          border-collapse: collapse;
+        }
+      }
+      tbody {
+        td {
+          padding: 8px 12px;
+          border: 1px solid $primary-light;
+          border-collapse: collapse;
+        }
+      }
+    }
+
+    .contact-box {
+      padding: 1rem 0;
+
+      > h4 {
+        font-size: $heading-text;
+        font-weight: $weight-bold;
+        color: $primary;
+      }
+
+      > p {
+        font-size: $small-text;
+        color: $text-muted;
+        margin: 0 0 1rem;
+      }
+
+      .contact-btns {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        justify-content: left;
+        @include mobile {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        > a {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5rem;
+          padding: 0.75rem 1.5rem;
+          background-color: $primary;
+          color: #fff;
+          border-radius: $radius-lg;
+          text-decoration: none;
+          font-size: $small-text;
+          font-weight: $weight-bold;
+
+          > svg {
+            font-size: 1.25rem;
+          }
+
+          &:hover {
+            background-color: $primary-hover;
+          }
+        }
+      }
+    }
   }
 }

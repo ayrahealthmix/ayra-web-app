@@ -2,61 +2,91 @@
 
 .card {
   width: 300px;
-  border: 1px solid #eee;
-  border-radius: 12px;
+  border-radius: $radius-md;
   text-align: center;
-  background: #fff;
+  background: $surface;
+  border: 1px solid $border;
   overflow: hidden;
+  @include desktop {
+    &:hover {
+      box-shadow: $shadow-md;
+      transition: box-shadow 0.3s ease;
+      .card-thumbnail {
+        img {
+          transform: scale(1.05);
+          transition: transform 0.3s ease;
+        }
+      }
+    }
+  }
   @include mobile {
     width: 100%;
   }
 
   .card-thumbnail {
     width: 100%;
-    height: 300px;
+    aspect-ratio: 1;
     overflow: hidden;
+    border-bottom: 1px solid $border;
 
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      &:hover {
-        transform: scale(1.05);
-        transition: transform 0.3s ease;
-      }
     }
   }
 
   .card-details {
-    padding: 16px;
-    text-align: left;
-    border-top: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 1rem;
 
-    h4 {
-      font-size: 14px;
-      font-weight: 600;
-      line-height: 1.3;
+    > strong {
+      font-size: $body-text;
+      font-weight: $weight-bold;
+      line-height: $line-height-normal;
+      text-align: left;
+      margin-bottom: 1rem;
     }
 
-    p {
-      font-size: 12px;
-      margin-block: 4px;
-      span {
-        color: #388e3c;
-        font-weight: bold;
-      }
-    }
-
-    button {
+    .card-footer {
       width: 100%;
-      background: $primary;
-      color: $surface;
-      border: none;
-      padding: 12px 16px;
-      border-radius: $radius-lg;
-      cursor: pointer;
-      font-size: 16px;
-      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+
+      p {
+        width: calc(30% - 0.5rem);
+        font-size: $caption-text;
+        text-align: left;
+
+        span {
+          display: block;
+          font-size: $body-text;
+          line-height: $line-height-normal;
+          font-weight: $weight-bold;
+          color: #388e3c;
+          font-weight: bold;
+        }
+      }
+
+      a {
+        width: calc(70% - 0.5rem);
+
+        button {
+          width: 100%;
+          background: $primary;
+          color: $surface;
+          border: none;
+          padding: 12px 16px;
+          border-radius: $radius-lg;
+          cursor: pointer;
+          font-size: $body-text;
+          font-weight: $weight-bold;
+        }
+      }
     }
   }
 }

@@ -1,15 +1,16 @@
-const Product = require("../models/productSchema");
-const mongoose = require("mongoose");
-const { GridFSBucket } = require("mongodb");
+import Product from "../models/productSchema.js";
+import mongoose from "mongoose";
+import cloudinary from "../config/cloudinary.js";
 
 // PUBLIC
-exports.getProducts = async (req, res) => {
+export const getProducts = async (req, res) => {
   try {
     if (mongoose.connection.readyState !== 1) {
       return res.status(500).json({
         message: "Database not connected",
       });
     }
+
     const products = await Product.find();
 
     res.status(200).json({
@@ -24,13 +25,16 @@ exports.getProducts = async (req, res) => {
       error: error.message,
     });
   }
+  console.log("Cloudinary config:", cloudinary.config());
 };
 
-exports.getProductById = async (req, res) => {
+export const getProductById = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const foundProduct = await Product.findOne({ productId: id });
+    const foundProduct = await Product.findOne({
+      productId: String(id),
+    });
 
     if (!foundProduct) {
       return res.status(404).json({
@@ -52,7 +56,7 @@ exports.getProductById = async (req, res) => {
   }
 };
 
-exports.getSearchProducts = async (req, res) => {
+export const getSearchProducts = async (req, res) => {
   try {
     const { query } = req.query;
 
@@ -67,11 +71,10 @@ exports.getSearchProducts = async (req, res) => {
 
     const products = await Product.find(filter);
 
-    const result = {
-      data: products,
+    res.status(200).json({
       status: "ok",
-    };
-    res.status(200).json(result);
+      data: products,
+    });
   } catch (error) {
     res.status(500).json({
       message: error.message,
@@ -80,7 +83,7 @@ exports.getSearchProducts = async (req, res) => {
 };
 
 // ADMIN
-exports.adminLogin = (req, res) => {
+export const adminLogin = (req, res) => {
   const { password } = req.body;
 
   if (!password) {
@@ -103,11 +106,10 @@ exports.adminLogin = (req, res) => {
   });
 };
 
-exports.createProduct = async (req, res) => {
+export const createProduct = async (req, res) => {
   try {
     const { name, description, variants, category, isAvailable } = req.body;
 
-    // Validate thumbnail
     if (!req.files?.thumbnail) {
       return res.status(400).json({
         status: "error",
@@ -115,26 +117,38 @@ exports.createProduct = async (req, res) => {
       });
     }
 
-    const thumbnail = `/uploads/products/${req.files.thumbnail[0].filename}`;
+    const thumbUpload = await cloudinary.uploader.upload(
+      req.files.thumbnail[0].path,
+      { folder: "products/thumbnail" },
+    );
 
-    const images = req.files.images
-      ? req.files.images.map((file) => `/uploads/products/${file.filename}`)
-      : [];
+    const thumbnail = thumbUpload.secure_url;
 
-    // Parse variants (coming as string from FormData)
+    let images = [];
+
+    if (req.files.images) {
+      const uploadPromises = req.files.images.map((file) =>
+        cloudinary.uploader.upload(file.path, {
+          folder: "products/images",
+        }),
+      );
+
+      const uploadedImages = await Promise.all(uploadPromises);
+      images = uploadedImages.map((img) => img.secure_url);
+    }
+
     let parsedVariants = [];
 
     if (variants) {
       try {
         parsedVariants = JSON.parse(variants);
 
-        // Convert price fields to Number
         parsedVariants = parsedVariants.map((v) => ({
           price: Number(v.price),
           discountPrice: v.discountPrice ? Number(v.discountPrice) : undefined,
           netWeight: v.netWeight,
         }));
-      } catch (err) {
+      } catch {
         return res.status(400).json({
           status: "error",
           message: "Invalid variants format",
@@ -173,22 +187,19 @@ exports.createProduct = async (req, res) => {
   }
 };
 
-exports.updateProduct = async (req, res) => {
+export const updateProduct = async (req, res) => {
   try {
     const updateData = { ...req.body };
 
-    // Handle thumbnail upload
     if (req.file) {
       updateData.thumbnail = req.file.id.toString();
     }
 
-    // Handle multiple images upload
-    if (req.files && req.files.images) {
+    if (req.files?.images) {
       updateData.images = req.files.images.map((file) => file.id.toString());
     }
 
-    // If thumbnail is in fields
-    if (req.files && req.files.thumbnail && req.files.thumbnail[0]) {
+    if (req.files?.thumbnail?.[0]) {
       updateData.thumbnail = req.files.thumbnail[0].id.toString();
     }
 
@@ -208,48 +219,35 @@ exports.updateProduct = async (req, res) => {
   }
 };
 
-exports.deleteProduct = async (req, res) => {
+export const deleteProduct = async (req, res) => {
   try {
-    const foundProduct = await Product.findById(req.params.id);
-    if (!foundProduct) {
+    const product = await Product.findById(req.params.id);
+
+    if (!product) {
       return res.status(404).json({ message: "Product not found" });
     }
 
-    // Delete images from GridFS
-    const bucket = new GridFSBucket(mongoose.connection.db, {
-      bucketName: "images",
-    });
-
-    // Delete thumbnail
-    if (foundProduct.thumbnail) {
-      try {
-        await bucket.delete(
-          new mongoose.Types.ObjectId(foundProduct.thumbnail),
-        );
-      } catch (err) {
-        console.error("Error deleting thumbnail:", err);
-      }
+    if (product.thumbnail) {
+      const publicId = product.thumbnail.split("/").pop().split(".")[0];
+      await cloudinary.uploader.destroy(`products/thumbnail/${publicId}`);
     }
 
-    // Delete all images
-    if (foundProduct.images && foundProduct.images.length > 0) {
-      for (const imageId of foundProduct.images) {
-        try {
-          await bucket.delete(new mongoose.Types.ObjectId(imageId));
-        } catch (err) {
-          console.error("Error deleting image:", err);
-        }
+    if (product.images.length) {
+      for (let img of product.images) {
+        const publicId = img.split("/").pop().split(".")[0];
+        await cloudinary.uploader.destroy(`products/images/${publicId}`);
       }
     }
 
     await Product.findByIdAndDelete(req.params.id);
+
     res.json({ message: "Product deleted successfully" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
-exports.updateAvailability = async (req, res) => {
+export const updateAvailability = async (req, res) => {
   try {
     const updatedProduct = await Product.findByIdAndUpdate(
       req.params.id,
@@ -262,36 +260,6 @@ exports.updateAvailability = async (req, res) => {
     }
 
     res.json(updatedProduct);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
-
-// Serve images from GridFS
-exports.getImage = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const bucket = new GridFSBucket(mongoose.connection.db, {
-      bucketName: "images",
-    });
-
-    const downloadStream = bucket.openDownloadStream(
-      new mongoose.Types.ObjectId(id),
-    );
-
-    downloadStream.on("file", (file) => {
-      res.set("Content-Type", file.contentType);
-      res.set("Content-Disposition", `inline; filename="${file.filename}"`);
-    });
-
-    downloadStream.on("error", (error) => {
-      if (error.code === "ENOENT") {
-        return res.status(404).json({ message: "Image not found" });
-      }
-      res.status(500).json({ message: error.message });
-    });
-
-    downloadStream.pipe(res);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

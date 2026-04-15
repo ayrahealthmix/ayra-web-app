@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
 import { searchProductApi } from "../../services/api";
-import { IMAGE_URL } from "../../helpers/config";
 import "./Search.scss";
 
 const Search = ({ isMobile = false, onClose = () => {} }) => {
@@ -106,10 +105,7 @@ const Search = ({ isMobile = false, onClose = () => {} }) => {
                 className="search-result-item"
                 onClick={handleResultClick}
               >
-                <img
-                  src={`${IMAGE_URL}${product.thumbnail}`}
-                  alt={product.name}
-                />
+                <img src={product.thumbnail} alt={product.name} />
                 <div className="search-result-name">{product.name}</div>
               </Link>
             ))}

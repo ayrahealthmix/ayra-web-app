@@ -7,13 +7,14 @@ const adminAuth = (req, res, next) => {
     });
   }
 
-  if (adminPassword !== process.env.ADMIN_PASSWORD) {
+  if (adminPassword !== process.env.ADMIN_KEY) {
     return res.status(401).json({
       message: "Invalid admin password",
+      pass: adminPassword,
     });
   }
 
   next();
 };
 
-module.exports = adminAuth;
+export default adminAuth;

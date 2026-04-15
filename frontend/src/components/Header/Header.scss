@@ -3,7 +3,7 @@
 // === Anouncement Bar Style ===
 .announcement-bar {
   height: 36px;
-  background: $primary;
+  background: $primary-hover;
   color: $surface;
   overflow: hidden;
   display: flex;
@@ -60,6 +60,9 @@
 
     .logo {
       max-width: 48px;
+      @include mobile {
+        max-width: 32px;
+      }
     }
 
     .mobile-menu {

@@ -1,7 +1,10 @@
-const express = require("express");
-const cors = require("cors");
-require("dotenv").config();
-const connectDB = require("./src/config/db");
+import "dotenv/config";
+
+import "./src/config/cloudinary.js";
+import express from "express";
+import cors from "cors";
+import connectDB from "./src/config/mongodb.js";
+import routes from "./src/routes/routes.js";
 
 const app = express();
 
@@ -20,7 +23,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/uploads", express.static("uploads"));
-app.use("/api", require("./src/routes/routes"));
+app.use("/api", routes);
 
 const PORT = process.env.PORT || 5000;
 
@@ -28,6 +31,8 @@ const startServer = async () => {
   console.log("STEP 1: Starting server...");
   console.log("PORT:", process.env.PORT);
   console.log("MONGO_URL:", process.env.MONGO_URL);
+  console.log("Cloud Name:", process.env.CLOUDINARY_CLOUD_NAME);
+  console.log("API Key:", process.env.CLOUDINARY_API_KEY);
 
   // 🔥 START SERVER FIRST
   app.listen(PORT, "0.0.0.0", () => {

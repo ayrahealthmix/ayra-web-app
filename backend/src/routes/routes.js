@@ -1,30 +1,50 @@
-const router = require("express").Router();
-const controller = require("../controllers/controllers");
-const adminAuth = require("../middleware/adminAuth");
-const upload = require("../middleware/upload.middleware");
+import express from "express";
+import adminAuth from "../middleware/adminAuth.js";
+import upload from "../middleware/upload.js";
+
+import {
+  adminLogin,
+  createProduct,
+  updateProduct,
+  deleteProduct,
+  updateAvailability,
+  getProducts,
+  getProductById,
+  getSearchProducts,
+} from "../controllers/controllers.js";
+
+const router = express.Router();
 
 // ADMIN
-router.post("/admin/login", controller.adminLogin);
+router.post("/admin/login", adminLogin);
+
 router.post(
   "/admin/products",
+  adminAuth,
   upload.fields([
     { name: "thumbnail", maxCount: 1 },
     { name: "images", maxCount: 5 },
   ]),
-  controller.createProduct,
+  createProduct,
 );
-// router.put("/products/:id", adminAuth, upload, controller.updateProduct);
-router.delete("/products/:id", adminAuth, controller.deleteProduct);
-router.patch(
-  "/products/:id/available",
+
+router.put(
+  "/admin/products/:id",
   adminAuth,
-  controller.updateAvailability,
+  upload.fields([
+    { name: "thumbnail", maxCount: 1 },
+    { name: "images", maxCount: 5 },
+  ]),
+  updateProduct,
 );
+
+router.delete("/admin/products/:id", adminAuth, deleteProduct);
+
+router.patch("/admin/products/:id/available", adminAuth, updateAvailability);
 
 // PUBLIC
-router.get("/products", controller.getProducts);
-router.get("/products/search", controller.getSearchProducts); // Must come before /products/:id
-router.get("/product/:id", controller.getProductById);
-router.get("/images/:id", controller.getImage); // Route to serve images from GridFS
+router.get("/products", getProducts);
+router.get("/products/search", getSearchProducts);
+router.get("/product/:id", getProductById);
 
-module.exports = router;
+export default router;

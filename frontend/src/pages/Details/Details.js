@@ -11,14 +11,15 @@ import {
   EMAIL_ADDRESS,
 } from "../../helpers/config";
 import { useIsMobile } from "../../hooks/useIsMobile";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import FassiImage from "../../assets/images/Fssai.png";
+import ImageSwiper from "../../components/ImageSwiper/ImageSwiper";
+import Loader from "../../components/Loader/Loader";
 
 export default function ProductDetail() {
+  const [isLoading, setIsLoading] = useState(true);
   const isMobile = useIsMobile();
   const { id } = useParams();
   const [product, setProduct] = useState(null);
@@ -30,34 +31,26 @@ export default function ProductDetail() {
     : `https://mail.google.com/mail/?view=cm&fs=1&to=${EMAIL_ADDRESS}&su=Order Inquiry&body=${encodeURIComponent(message)}`;
 
   useEffect(() => {
-    getProductById(id).then((res) => setProduct(res.data.data));
+    setIsLoading(true);
+    getProductById(id)
+      .then((res) => setProduct(res.data.data))
+      .finally(() => setIsLoading(false));
   }, [id]);
 
-  const images = [product?.thumbnail, FassiImage];
+  if (isLoading) {
+    return <Loader />;
+  }
 
   if (!product) return <p>Product not found</p>;
+  const images = [product?.thumbnail, ...product?.images, FassiImage];
 
   return (
     <section className="product-detail-main">
       {/* Image */}
       <div className="product-detail-main__lhs">
-        {/* <img src={product.thumbnail} alt={product.name} /> */}
-        <Swiper
-          modules={[Navigation, Pagination, Autoplay]}
-          slidesPerView={1}
-          navigation
-          pagination={{ clickable: true }}
-          autoplay={{ delay: 3000 }}
-          loop
-        >
-          {images.map((img, index) => (
-            <SwiperSlide key={index}>
-              <div className="swiper-card">
-                <img src={img} alt={`product-${index}`} />
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        <div className="swiper-cntnr">
+          <ImageSwiper images={images} onclick={false} />
+        </div>
       </div>
 
       {/* Info */}

@@ -14,21 +14,19 @@
   }
 
   &__lhs {
-    width: calc(30% - 1rem);
+    width: calc(50% - 1rem);
     @include mobile {
       width: 100%;
     }
-
-    img {
-      width: 100%;
-      aspect-ratio: 1;
-      border-radius: 16px;
-      object-fit: cover;
+    .swiper-cntnr {
+      border-radius: $radius-md;
+      overflow: hidden;
+      border: 1px solid $primary-light;
     }
   }
 
   &__rhs {
-    width: calc(70% - 1rem);
+    width: calc(50% - 1rem);
     @include mobile {
       width: 100%;
     }

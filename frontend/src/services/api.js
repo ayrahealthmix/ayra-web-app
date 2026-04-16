@@ -12,19 +12,7 @@ export const handleAdminLoginApi = (password) => {
   });
 };
 
-/* =======================
-   PRODUCTS
-======================= */
-
-// Search products
-export const searchProductApi = (query) => {
-  return axios.get(`${API_URL}/products/search`, {
-    params: { query },
-  });
-};
-
-// Get all products with filters
-
+// Create product
 export const createProductApi = (formData) => {
   return axios.post(`${API_URL}/admin/products`, formData, {
     headers: {
@@ -51,17 +39,23 @@ export const deleteProductApi = (id) => {
   });
 };
 
+/* =======================
+   PRODUCTS
+======================= */
+
+// Search products
+export const searchProductApi = (query) => {
+  return axios.get(`${API_URL}/products/search`, {
+    params: { query },
+  });
+};
+
+// Get all products
 export const getProductsApi = () => {
   return axios.get(`${API_URL}/products`);
 };
 
 // Get product by ID
 export const getProductById = (id) => {
-  return axios.get(`${API_URL}/product/${id}`);
-};
-
-// Image URL helper
-export const getImageUrl = (imagePath) => {
-  if (!imagePath) return null;
-  return `${API_URL}${imagePath}`;
+  return axios.get(`${API_URL}/products/${id}`);
 };

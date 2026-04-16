@@ -7,7 +7,6 @@ import {
   createProduct,
   updateProduct,
   deleteProduct,
-  updateAvailability,
   getProducts,
   getProductById,
   getSearchProducts,
@@ -40,11 +39,9 @@ router.put(
 
 router.delete("/admin/products/:id", adminAuth, deleteProduct);
 
-router.patch("/admin/products/:id/available", adminAuth, updateAvailability);
-
 // PUBLIC
 router.get("/products", getProducts);
 router.get("/products/search", getSearchProducts);
-router.get("/product/:id", getProductById);
+router.get("/products/:id", getProductById);
 
 export default router;

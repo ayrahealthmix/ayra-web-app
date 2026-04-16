@@ -1,22 +1,20 @@
 import "./Home.scss";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import jsonData from "../../services/data.json";
-import SwiperImage1 from "../../assets/banners/masala-banner.png";
-import SwiperImage2 from "../../assets/banners/malt-banner.png";
-import SwiperImage3 from "../../assets/banners/mixes-banner.png";
 import CategoryMasalaImg from "../../assets/images/cat-masala.png";
 import CategoryHealthMixImg from "../../assets/images/cat-mix.png";
 import CategoryFlourImg from "../../assets/images/cat-malt.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useIsMobile } from "../../hooks/useIsMobile";
+import ImageSwiper from "../../components/ImageSwiper/ImageSwiper";
+import SwiperImage1 from "../../assets/banners/masala-banner.png";
+import SwiperImage2 from "../../assets/banners/malt-banner.png";
+import SwiperImage3 from "../../assets/banners/mixes-banner.png";
 
 export default function Home() {
   const isMobile = useIsMobile();
-  const navigate = useNavigate();
   const { categoryHighlights } = jsonData;
   const categoryImages = {
     masala: CategoryMasalaImg,
@@ -27,27 +25,9 @@ export default function Home() {
   return (
     <section className="home">
       <div className="swiper-cntnr" data-aos="zoom-in">
-        <Swiper
-          modules={[Navigation, Pagination, Autoplay]}
-          slidesPerView={1}
-          navigation
-          pagination={{ clickable: true }}
-          autoplay={{ delay: 3000 }}
-          loop
-          onClick={() => navigate("/list/all")}
-        >
-          <SwiperSlide>
-            <img src={SwiperImage1} alt="slide1" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src={SwiperImage2} alt="slide2" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src={SwiperImage3} alt="slide3" />
-          </SwiperSlide>
-        </Swiper>
+        <ImageSwiper images={[SwiperImage1, SwiperImage2, SwiperImage3]} />
       </div>
-      <div className="category-highlts-main" data-aos="fade-down">
+      <div className="category-highlts-main">
         <h1>Category highlights</h1>
         <p>
           Enhance your taste with our authentic collection—tradition meets
@@ -59,6 +39,7 @@ export default function Home() {
               className="category-highlts-main__row__col"
               key={category.id}
               to={`/list/${category.slug}`}
+              data-aos="fade-down"
             >
               <img src={categoryImages[category.slug]} alt="category" />
               <h4>{category.title}</h4>

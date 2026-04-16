@@ -25,7 +25,7 @@
     padding: 10px 0;
 
     button {
-      background: $color-primary;
+      background: $primary;
       color: #fff;
       border-radius: 20px;
       text-transform: none;
@@ -33,7 +33,7 @@
       font-weight: 400;
       box-shadow: none;
       &:hover {
-        background: $color-secondary;
+        background: $primary-hover;
       }
     }
   }

@@ -19,6 +19,8 @@ const Admin = () => {
     title: "",
     message: "",
   });
+  const [openDeleteConfirmation, setOpenDeleteConfirmation] = useState(false);
+  const [selectedProductId, setSelectedProductId] = useState(null);
   const navigate = useNavigate();
   const isMobile = useIsMobile();
 
@@ -49,7 +51,7 @@ const Admin = () => {
     }
   };
 
-  const handleAdminLouOut = () => {
+  const handleAdminLogout = () => {
     localStorage.removeItem("adminPassword");
     navigate("/");
   };
@@ -81,6 +83,9 @@ const Admin = () => {
           title: "Error",
           message: "Failed to delete product",
         });
+      })
+      .finally(() => {
+        setOpenDeleteConfirmation(false);
       });
   };
 
@@ -120,7 +125,10 @@ const Admin = () => {
               <ProductCard
                 product={product}
                 page="admin"
-                handleDeleteProduct={handleDeleteProduct}
+                handleDeleteProduct={() => {
+                  setOpenDeleteConfirmation(true);
+                  setSelectedProductId(product.productId);
+                }}
                 handleEditProduct={handleEditProduct}
               />
             ))}
@@ -128,7 +136,7 @@ const Admin = () => {
         )}
       </div>
       <div className="admin-action">
-        <button className="logout-btn" onClick={() => handleAdminLouOut()}>
+        <button className="logout-btn" onClick={() => handleAdminLogout()}>
           Logout
         </button>
       </div>
@@ -138,6 +146,29 @@ const Admin = () => {
         title="Admin Login"
         children={<Login onSuccess={() => setIsLoginOpen(false)} />}
       />
+      <ModalPopup
+        open={openDeleteConfirmation}
+        handleClose={() => setOpenDeleteConfirmation(false)}
+        title="Confirm Delete"
+      >
+        <div className="delete-confirmation">
+          <p>Are you sure you want to delete this product?</p>
+          <div className="delete-confirmation-actions">
+            <button
+              onClick={() => setOpenDeleteConfirmation(false)}
+              className="cancel-btn"
+            >
+              Cancel
+            </button>
+            <button
+              onClick={() => handleDeleteProduct(selectedProductId)}
+              className="delete-btn"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      </ModalPopup>
       <AlertPopup
         open={isAlertOpen.open}
         title={isAlertOpen.title}

@@ -28,7 +28,7 @@
     select {
       width: 800px;
       padding: 1rem;
-      border: 1px solid $color-secondary;
+      border: 1px solid $primary;
       border-radius: 0.5rem;
     }
   }
@@ -63,14 +63,14 @@
       input {
         width: calc(33.3% - 0.5rem);
         padding: 1rem;
-        border: 1px solid $color-secondary;
+        border: 1px solid $primary;
         border-radius: 0.5rem;
         font-size: 1rem;
       }
     }
     .product-form-btn {
       padding: 1rem 2rem;
-      background-color: $color-primary;
+      background-color: $primary;
       color: #fff;
       border: none;
       border-radius: 0.75rem;
@@ -78,7 +78,7 @@
 
       &:hover {
         cursor: pointer;
-        background-color: $color-accent;
+        background-color: $primary-light;
       }
     }
   }
@@ -93,7 +93,7 @@
         width: 24px;
         height: 24px;
         border-radius: 0.5rem;
-        accent-color: $color-primary;
+        accent-color: $primary;
       }
     }
   }
@@ -101,7 +101,7 @@
   .product-form-submit-btn {
     padding: 1rem 2rem;
     color: #fff;
-    background-color: $color-primary;
+    background-color: $primary;
     border: none;
     border-radius: 0.75rem;
     font-size: 1rem;
@@ -109,7 +109,7 @@
 
     &:hover {
       cursor: pointer;
-      background-color: $color-accent;
+      background-color: $primary-light;
     }
   }
 }

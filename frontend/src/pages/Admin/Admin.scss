@@ -15,7 +15,7 @@
     max-width: 1366px;
     margin: 0 auto 2rem;
     padding: 2rem;
-    background-color: $color-background;
+    background-color: $primary-soft;
     border-radius: 24px;
 
     .admin-header {
@@ -52,7 +52,7 @@
 
     .logout-btn {
       padding: 1rem 2rem;
-      background-color: $color-primary;
+      background-color: $primary;
       color: #fff;
       border: none;
       border-radius: 0.75rem;
@@ -61,7 +61,54 @@
 
       &:hover {
         cursor: pointer;
-        background-color: $color-secondary;
+        background-color: $primary-hover;
+      }
+    }
+  }
+}
+
+.delete-confirmation {
+  padding: 1.5rem;
+
+  > p {
+    font-size: $body-text;
+    color: $text-body;
+    line-height: $line-height-normal;
+    font-weight: $weight-body;
+    text-align: center;
+  }
+
+  .delete-confirmation-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+
+    .delete-btn,
+    .cancel-btn {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: $radius-lg;
+      font-size: $body-text;
+      font-weight: $weight-body;
+      cursor: pointer;
+    }
+
+    .delete-btn {
+      background-color: $error;
+      color: #fff;
+
+      &:hover {
+        background-color: darken($error, 10%);
+      }
+    }
+
+    .cancel-btn {
+      background-color: $border;
+      color: $text-body;
+
+      &:hover {
+        background-color: darken($border, 10%);
       }
     }
   }

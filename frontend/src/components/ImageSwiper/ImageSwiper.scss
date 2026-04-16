@@ -1,0 +1,56 @@
+@import "../../styles/index";
+
+.swiper {
+  &:hover {
+    .swiper-button-prev,
+    .swiper-button-next {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  .swiper-wrapper {
+    .swiper-slide {
+      > img {
+        max-width: 100%;
+      }
+    }
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.3s ease,
+      visibility 0.3s ease;
+
+    svg {
+      background-color: $primary-light;
+      color: $primary;
+      border-radius: 50%;
+      padding: 0.75rem;
+    }
+
+    &:hover {
+      svg {
+        color: $surface;
+        background-color: $primary-hover;
+      }
+    }
+  }
+
+  .swiper-button-prev {
+    left: 2rem;
+  }
+
+  .swiper-button-next {
+    right: 2rem;
+  }
+
+  .swiper-pagination {
+    .swiper-pagination-bullet-active {
+      background-color: $primary;
+    }
+  }
+}

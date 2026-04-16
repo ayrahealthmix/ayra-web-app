@@ -48,7 +48,7 @@
     strong {
       font-size: 1.25rem;
       font-weight: 400;
-      color: $color-heading;
+      color: $text-heading;
     }
 
     span {
@@ -68,15 +68,15 @@
       border: none;
       background: #fff;
       border-radius: 48px;
-      border: 1px solid $color-primary;
+      border: 1px solid $primary;
       cursor: pointer;
 
       &:hover {
-        background: $color-accent;
+        background: $primary-light;
       }
 
       &.active {
-        background: $color-primary;
+        background: $primary;
         color: #fff;
       }
     }

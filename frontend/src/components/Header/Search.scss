@@ -16,7 +16,7 @@
       outline: none;
       transition: border-color 0.2s;
       font-size: $small-text;
-      color: $color-text;
+      color: $text-body;
 
       @include desktop {
         &:focus {
@@ -74,7 +74,7 @@
         gap: 0.5rem;
         padding: 0.5rem;
         text-decoration: none;
-        color: $color-text;
+        color: $text-body;
         border-bottom: 1px solid $border;
         transition: background 0.2s;
         @include desktop {
@@ -139,7 +139,7 @@
       outline: none;
       transition: border-color 0.2s;
       font-size: $small-text;
-      color: $color-text;
+      color: $text-body;
 
       &:focus {
         background-color: $primary-soft;
@@ -168,7 +168,7 @@
       gap: 1rem;
       padding: 1rem;
       text-decoration: none;
-      color: $color-text;
+      color: $text-body;
       border-bottom: 1px solid $border;
 
       img {

@@ -53,6 +53,7 @@
     .card-footer {
       width: 100%;
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
@@ -85,6 +86,25 @@
           cursor: pointer;
           font-size: $body-text;
           font-weight: $weight-bold;
+        }
+      }
+
+      button {
+        width: 100%;
+        color: $surface;
+        border: none;
+        padding: 12px 16px;
+        border-radius: $radius-lg;
+        cursor: pointer;
+        font-size: $body-text;
+        font-weight: $weight-bold;
+
+        &.edit-btn {
+          background-color: $warning;
+        }
+
+        &.delete-btn {
+          background-color: $error;
         }
       }
     }

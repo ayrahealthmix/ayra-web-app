@@ -31,7 +31,12 @@ export default function Header() {
         </Link>
         <Link
           to="/list/all"
-          className={location.pathname === "/list/all" ? "active" : ""}
+          className={
+            location.pathname.includes("/list") ||
+            location.pathname.includes("/details")
+              ? "active"
+              : ""
+          }
         >
           Shop
         </Link>

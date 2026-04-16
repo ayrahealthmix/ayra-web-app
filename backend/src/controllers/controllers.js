@@ -191,6 +191,10 @@ export const updateProduct = async (req, res) => {
   try {
     const updateData = { ...req.body };
 
+    if (updateData.variants) {
+      updateData.variants = JSON.parse(updateData.variants);
+    }
+
     if (req.file) {
       updateData.thumbnail = req.file.id.toString();
     }
@@ -203,8 +207,8 @@ export const updateProduct = async (req, res) => {
       updateData.thumbnail = req.files.thumbnail[0].id.toString();
     }
 
-    const updatedProduct = await Product.findByIdAndUpdate(
-      req.params.id,
+    const updatedProduct = await Product.findOneAndUpdate(
+      { productId: req.params.id },
       updateData,
       { new: true },
     );
@@ -221,45 +225,31 @@ export const updateProduct = async (req, res) => {
 
 export const deleteProduct = async (req, res) => {
   try {
-    const product = await Product.findById(req.params.id);
+    const { id } = req.params;
+
+    const product = await Product.findOne({ productId: id });
 
     if (!product) {
       return res.status(404).json({ message: "Product not found" });
     }
 
+    // delete thumbnail
     if (product.thumbnail) {
       const publicId = product.thumbnail.split("/").pop().split(".")[0];
       await cloudinary.uploader.destroy(`products/thumbnail/${publicId}`);
     }
 
-    if (product.images.length) {
+    // delete images
+    if (product.images?.length) {
       for (let img of product.images) {
         const publicId = img.split("/").pop().split(".")[0];
         await cloudinary.uploader.destroy(`products/images/${publicId}`);
       }
     }
 
-    await Product.findByIdAndDelete(req.params.id);
+    await Product.findOneAndDelete({ productId: id });
 
     res.json({ message: "Product deleted successfully" });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
-
-export const updateAvailability = async (req, res) => {
-  try {
-    const updatedProduct = await Product.findByIdAndUpdate(
-      req.params.id,
-      { isAvailable: req.body.isAvailable },
-      { new: true },
-    );
-
-    if (!updatedProduct) {
-      return res.status(404).json({ message: "Product not found" });
-    }
-
-    res.json(updatedProduct);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

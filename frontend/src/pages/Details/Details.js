@@ -6,7 +6,6 @@ import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import PhoneIcon from "@mui/icons-material/Phone";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import {
-  API_URL,
   PHONE_NUMBER,
   WHATSAPP_NUMBER,
   EMAIL_ADDRESS,

@@ -111,7 +111,7 @@ const Search = ({ isMobile = false, onClose = () => {} }) => {
             ))}
             {searchResults.length > 5 && (
               <Link
-                to={`/list?search=${encodeURIComponent(searchQuery)}`}
+                to={"/list/all"}
                 className="search-result-view-all"
                 onClick={handleResultClick}
               >

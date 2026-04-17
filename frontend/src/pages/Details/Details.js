@@ -23,7 +23,7 @@ export default function ProductDetail() {
   const isMobile = useIsMobile();
   const { id } = useParams();
   const [product, setProduct] = useState(null);
-  const message = `Hi, I want to order:\nProduct: ${product?.name}\nID: ${product?.productId}`;
+  const message = `Hi, I want to order:\nProduct: ${product?.name}`;
   const callUrl = `tel:${PHONE_NUMBER}`;
   const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
   const emailUrl = isMobile

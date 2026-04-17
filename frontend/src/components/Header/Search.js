@@ -27,7 +27,10 @@ const Search = ({ isMobile = false, onClose = () => {} }) => {
       searchTimeoutRef.current = setTimeout(async () => {
         try {
           const res = await searchProductApi(searchQuery);
-          setSearchResults(res.data.data);
+          const availableProducts = res.data.data.filter(
+            (product) => product.isAvailable === true,
+          );
+          setSearchResults(availableProducts);
           setIsDropdownOpen(true);
         } catch (error) {
           setSearchError("Failed to search products");

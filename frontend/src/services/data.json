@@ -10,13 +10,13 @@
       "id": 2,
       "title": "Health mix",
       "description": "Nutritious & energyzing every zip!",
-      "slug": "health-mix"
+      "slug": "malt"
     },
     {
       "id": 3,
       "title": "Flour",
       "description": "The Heart of Homemade Goodness!",
-      "slug": "flour"
+      "slug": "mix"
     }
   ],
   "offers": [
@@ -26,5 +26,149 @@
     "🎉 New arrivals are live",
     "🔥 Free delivery on orders above ₹999",
     "🎉 New arrivals are live"
-  ]
+  ],
+  "termsAndConditions": {
+    "heading": "TERMS & CONDITIONS",
+    "subHeading": "Welcome to Ayra Health Mix. By using our website (www.ayrahealthmix.com), you agree to the following terms:",
+    "sections": [
+      {
+        "title": "General",
+        "description": "This website is owned and operated by Ayra Health Mix. By placing an order, you agree to follow these terms."
+      },
+      {
+        "title": "Products",
+        "description": "All products are homemade and prepared with care. We try to ensure product descriptions and images are accurate, but slight variations may occur."
+      },
+      {
+        "title": "Orders",
+        "description": "Orders are confirmed only after communication via WhatsApp, phone, or email. We reserve the right to cancel or refuse any order."
+      },
+      {
+        "title": "Pricing",
+        "description": "Prices are subject to change without notice. Final price will be confirmed during order confirmation."
+      },
+      {
+        "title": "Payment",
+        "description": "Payment details will be shared during order confirmation. Orders will be processed only after payment confirmation (if applicable)."
+      },
+      {
+        "title": "Shipping & Delivery",
+        "description": "Delivery timelines will be shared during order confirmation. We are not responsible for delays caused by courier services."
+      },
+      {
+        "title": "Returns & Refunds",
+        "description": "Due to the nature of food products, returns are not accepted. Refunds are only applicable if wrong product is delivered or the product is damaged during delivery."
+      },
+      {
+        "title": "User Responsibility",
+        "description": "You agree not to misuse the website or provide false information."
+      },
+      {
+        "title": "Changes to Terms",
+        "description": "We may update these terms at any time without prior notice."
+      }
+    ]
+  },
+  "privacyPolicies": {
+    "heading": "PRIVACY POLICY",
+    "subHeading": "At Ayra Health Mix, we respect your privacy and are committed to protecting your personal information.",
+    "sections": [
+      {
+        "title": "Information We Collect",
+        "description": "We may collect: Name, Phone number, Email address, Delivery address."
+      },
+      {
+        "title": "How We Use Your Information",
+        "description": "We use your data to: Process and confirm orders, Communicate via WhatsApp, phone, or email, Improve our services."
+      },
+      {
+        "title": "Data Sharing",
+        "description": "We do not sell or share your personal information with third parties. Data may only be shared with delivery partners (for shipping)."
+      },
+      {
+        "title": "Data Security",
+        "description": "We take reasonable steps to protect your information. However, no online system is 100% secure."
+      },
+      {
+        "title": "Cookies",
+        "description": "Our website may use basic cookies for better user experience."
+      },
+      {
+        "title": "User Rights",
+        "description": "You can: Request your data, Ask us to delete your data."
+      },
+      {
+        "title": "Contact Us",
+        "description": "If you have any questions, contact us via: Phone: 93609 88964, Email: ayrahealthmix@gmail.com."
+      }
+    ]
+  },
+  "shippingPolicies": {
+    "heading": "SHIPPING POLICY",
+    "subHeading": "At Ayra Health Mix, we ensure safe and timely delivery of our homemade products.",
+    "sections": [
+      {
+        "title": "Order Processing",
+        "description": "Orders are confirmed only after communication via WhatsApp, phone, or email. Once confirmed, orders are processed within 1–2 business days."
+      },
+      {
+        "title": "Delivery Time",
+        "description": "Estimated delivery time: 2–5 business days depending on location. Delivery timelines will be shared during order confirmation."
+      },
+      {
+        "title": "Shipping Charges",
+        "description": "Shipping charges (if any) will be informed during order confirmation. Charges may vary based on delivery location."
+      },
+      {
+        "title": "Delivery Areas",
+        "description": "We currently deliver across selected locations in India. Please confirm availability before placing an order."
+      },
+      {
+        "title": "Delays",
+        "description": "Delivery may be delayed due to courier issues, weather conditions, or unexpected situations. We are not responsible for delays caused by third-party delivery services."
+      },
+      {
+        "title": "Incorrect Address",
+        "description": "Customers must provide accurate delivery details. We are not responsible for failed deliveries due to incorrect information."
+      },
+      {
+        "title": "Order Tracking",
+        "description": "Tracking details (if available) will be shared via WhatsApp or email."
+      }
+    ]
+  },
+  "refundPolicies": {
+    "heading": "REFUND POLICY",
+    "subHeading": "At Ayra Health Mix, we deal with food products, so we follow strict quality and safety standards.",
+    "sections": [
+      {
+        "title": "No Return Policy",
+        "description": "Due to the nature of homemade food products, returns are not accepted."
+      },
+      {
+        "title": "Refund Eligibility",
+        "description": "Refunds are only provided if you received the wrong product or the product is damaged during delivery."
+      },
+      {
+        "title": "Proof Requirement",
+        "description": "Customers must provide photo or video proof within 24 hours of delivery."
+      },
+      {
+        "title": "Refund Process",
+        "description": "Once verified, refund will be processed within 3–7 business days. Refund will be issued via the original payment method or agreed method."
+      },
+      {
+        "title": "Non-Refundable Cases",
+        "description": "Refunds will not be provided if the customer does not like the taste, wrong address is provided, delay is caused by courier service, or the product is handled improperly after delivery."
+      },
+      {
+        "title": "Order Cancellation",
+        "description": "Orders can be cancelled only before preparation starts. Once the product is prepared or shipped, cancellation is not allowed."
+      },
+      {
+        "title": "Contact for Refunds",
+        "description": "For any issues, contact us via phone: 93609 88964 or email: ayrahealthmix@gmail.com."
+      }
+    ]
+  }
 }

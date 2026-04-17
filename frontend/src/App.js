@@ -8,6 +8,7 @@ import List from "./pages/List/List";
 import Details from "./pages/Details/Details";
 import Contact from "./pages/Contact/Contact";
 import Admin from "./pages/Admin/Admin";
+import Policies from "./pages/Policies/Policies";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/list/:slug" element={<List />} />
           <Route path="/details/:id" element={<Details />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/policies/:slug" element={<Policies />} />
         </Route>
         {/* ADMIN SIDE */}
         <Route path="/admin" element={<AdminLayout />}>

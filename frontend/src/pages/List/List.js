@@ -23,10 +23,11 @@ export default function List() {
       .catch((err) => console.error(err))
       .finally(() => setIsLoading(false));
   }, []);
-
   const filteredProducts = products.filter((product) => {
-    if (category === "all") return true;
-    return product.category === category;
+    return (
+      product.isAvailable &&
+      (category === "all" || product.category === category)
+    );
   });
 
   return (

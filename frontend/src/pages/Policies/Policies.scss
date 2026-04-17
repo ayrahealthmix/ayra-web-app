@@ -1,0 +1,79 @@
+@import "../../styles/index";
+
+.terms-and-policies-main {
+  max-width: 1366px;
+  margin: 0 auto;
+  padding: 2rem;
+  @include mobile {
+    padding: 1rem;
+  }
+
+  .terms-and-policies-header {
+    display: flex;
+    align-items: start;
+    justify-content: left;
+    gap: 1rem;
+
+    &__lhs {
+      background: $primary;
+      color: $surface;
+      border: none;
+      padding: 0.5rem;
+      border-radius: 50%;
+      cursor: pointer;
+
+      > svg {
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+    &__rhs {
+      > h1 {
+        font-size: $heading-text;
+        color: $primary;
+        line-height: $line-height-tight;
+        font-weight: $weight-heading;
+        margin-bottom: 8px;
+        @include mobile {
+          font-size: 1.5rem;
+        }
+      }
+
+      > p {
+        font-size: $small-text;
+        font-weight: $weight-body;
+        line-height: $line-height-normal;
+        color: $text-body;
+      }
+    }
+  }
+
+  .terms-and-policies-body {
+    padding: 2rem;
+    @include mobile {
+      padding: 1rem;
+    }
+    > li {
+      margin-bottom: 1.5rem;
+
+      &::marker {
+        color: $primary;
+      }
+
+      > h3 {
+        font-size: 1.5rem;
+        color: $heading-text;
+        line-height: $line-height-tight;
+        font-weight: $weight-heading;
+      }
+
+      > p {
+        font-size: $body-text;
+        font-weight: $weight-body;
+        line-height: $line-height-normal;
+        color: $text-body;
+      }
+    }
+  }
+}

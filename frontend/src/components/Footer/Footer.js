@@ -21,7 +21,7 @@ export default function Footer() {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/list">Shop</Link>
+              <Link to="/list/all">Shop</Link>
             </li>
             <li>
               <Link to="/contact">Contact</Link>
@@ -37,16 +37,16 @@ export default function Footer() {
           <h4>Policies</h4>
           <ul>
             <li>
-              <Link to="/policies">Privacy Policy</Link>
+              <Link to="/policies/privacy">Privacy Policy</Link>
             </li>
             <li>
-              <Link to="/policies">Refund Policy</Link>
+              <Link to="/policies/refund">Refund Policy</Link>
             </li>
             <li>
-              <Link to="/policies">Shipping Policy</Link>
+              <Link to="/policies/shipping">Shipping Policy</Link>
             </li>
             <li>
-              <Link to="/policies">Terms & Conditions</Link>
+              <Link to="/policies/terms">Terms & Conditions</Link>
             </li>
           </ul>
         </div>

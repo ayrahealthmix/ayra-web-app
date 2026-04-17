@@ -4,8 +4,8 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import jsonData from "../../services/data.json";
 import CategoryMasalaImg from "../../assets/images/cat-masala.png";
-import CategoryHealthMixImg from "../../assets/images/cat-mix.png";
-import CategoryFlourImg from "../../assets/images/cat-malt.png";
+import CategoryFlourImg from "../../assets/images/cat-mix.png";
+import CategoryHealthMixImg from "../../assets/images/cat-malt.png";
 import { Link } from "react-router-dom";
 import { useIsMobile } from "../../hooks/useIsMobile";
 import ImageSwiper from "../../components/ImageSwiper/ImageSwiper";
@@ -18,8 +18,8 @@ export default function Home() {
   const { categoryHighlights } = jsonData;
   const categoryImages = {
     masala: CategoryMasalaImg,
-    "health-mix": CategoryHealthMixImg,
-    flour: CategoryFlourImg,
+    malt: CategoryHealthMixImg,
+    mix: CategoryFlourImg,
   };
 
   return (

@@ -1,11 +1,13 @@
 @import "../../styles/index";
 
 .swiper {
-  &:hover {
-    .swiper-button-prev,
-    .swiper-button-next {
-      opacity: 1;
-      visibility: visible;
+  @include desktop {
+    &:hover {
+      .swiper-button-prev,
+      .swiper-button-next {
+        opacity: 1;
+        visibility: visible;
+      }
     }
   }
 
